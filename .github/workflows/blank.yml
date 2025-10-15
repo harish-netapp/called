@@ -1,0 +1,18 @@
+name: 'Check User Membership'
+description: 'Check if a GitHub user is a member of an organization'
+on:
+  workflow_call:
+    inputs:
+      command:
+        required: true
+        type: string
+        description: 'Command to execute'
+jobs:
+  ai_code_reviewer:
+    runs-on: [ ubuntu ]
+    steps:
+      - name: test
+        id: check-user
+        run: |        
+          echo "${{ inputs.command }}"
+        shell: bash
