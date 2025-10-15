@@ -13,6 +13,5 @@ jobs:
       - name: test
         id: check-user
         run: |        
-          docker run --pull=always --rm \
-          --entrypoint "${{ inputs.command }}" -v
+          echo --entrypoint "${{ inputs.command }}" -v
         shell: bash
