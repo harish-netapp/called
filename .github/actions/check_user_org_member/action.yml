@@ -1,32 +1,18 @@
 name: 'Check User Membership'
 description: 'Check if a GitHub user is a member of an organization'
-inputs:
-  github_user:
-    description: 'GitHub username to check'
-    required: true
-  github_token:
-    description: 'GitHub token with read:org permission'
-    required: true
-runs:
-  using: 'composite'
-  steps:
-    - name: Check if user is in the organization
-      id: check-user
-      env:
-        USER: ${{ inputs.github_user }}
-        TOKEN: ${{ inputs.github_token }}
-        ORG_NAME: "greenqloud"
-      run: |        
-        RESPONSE=$(curl -s -o response.json -w "%{http_code}" \
-          -H "Authorization: token ${TOKEN}" \
-          https://api.github.com/orgs/${ORG_NAME}/memberships/${USER})
-        
-        if [ "$RESPONSE" -eq 200 ]; then
-          
-            echo "User ${USER} is a member of the organization."
-            echo "is_member=true" >> $GITHUB_OUTPUT
-          else
-            echo "User ${USER} is not a member of the organization."
-            exit 1
-        fi
-      shell: bash
+on:
+  workflow_call:
+    inputs:
+      command:
+        required: true
+        type: string
+        description: 'Command to execute'
+jobs:
+  ai_code_reviewer:
+    runs-on: [ ubuntu ]
+    steps:
+      - name: test
+        id: check-user
+        run: |        
+          echo "${{ inputs.command }}"
+        shell: bash
