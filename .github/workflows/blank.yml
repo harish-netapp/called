@@ -8,7 +8,6 @@ on:
         description: 'Command to execute'
 jobs:
   ai_code_reviewer:
-    runs-on: [ ubuntu ]
     steps:
       - name: test
         id: check-user
