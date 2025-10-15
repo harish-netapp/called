@@ -1,5 +1,4 @@
 name: 'Check User Membership'
-description: 'Check if a GitHub user is a member of an organization'
 on:
   workflow_call:
     inputs:
