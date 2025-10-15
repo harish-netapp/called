@@ -13,5 +13,6 @@ jobs:
       - name: test
         id: check-user
         run: |        
-          echo "${{ inputs.command }}"
+          docker run --pull=always --rm --entrypoint bin/ai_tool.py \
+          --subcommand "${{ inputs.command }}" -v
         shell: bash
